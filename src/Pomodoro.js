@@ -34,7 +34,7 @@ const Pomodoro = props => {
       </div>
 
       <div>
-        <div id="start_stop"><FaPlay /></div>
+        <div id="start_stop" onClick={props.obj.startStop}><FaPlay /></div>
         <div id="reset" onClick={props.obj.reset}><FaSync /></div>
       </div>
 

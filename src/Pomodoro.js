@@ -11,18 +11,18 @@ const Pomodoro = props => {
         <div>
           <h2 id="break-label">Break Length</h2>
           <div>
-            <div id="break-decrement" onClick={props.breakDecrement}><FaArrowDown /></div>
-            <div id="break-length">{props.state.breakLength}</div>
-            <div id="break-increment" onClick={props.breakIncrement}><FaArrowUp /></div>
+            <div id="break-decrement" onClick={props.obj.breakDecrement}><FaArrowDown /></div>
+            <div id="break-length">{props.obj.state.breakLength}</div>
+            <div id="break-increment" onClick={props.obj.breakIncrement}><FaArrowUp /></div>
           </div>
         </div>
         
         <div>
           <h2 id="session-label">Session Length</h2>
           <div>
-            <div id="session-decrement"><FaArrowDown /></div>
-            <div id="session-length">{props.state.sessionLength}</div>
-            <div id="session-increment"><FaArrowUp /></div>
+            <div id="session-decrement" onClick={props.obj.sessionDecrement}><FaArrowDown /></div>
+            <div id="session-length">{props.obj.state.sessionLength}</div>
+            <div id="session-increment" onClick={props.obj.sessionIncrement}><FaArrowUp /></div>
           </div>
         </div>
 
@@ -30,12 +30,12 @@ const Pomodoro = props => {
 
       <div>
         <h2 id="timer-label">Session</h2>
-        <div id="time-left">{props.state.timeLeft}</div>
+        <div id="time-left">{props.obj.state.timeLeft}</div>
       </div>
 
       <div>
         <div id="start_stop"><FaPlay /></div>
-        <div id="reset" onClick={props.reset}><FaSync /></div>
+        <div id="reset" onClick={props.obj.reset}><FaSync /></div>
       </div>
 
     </div>

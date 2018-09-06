@@ -12,6 +12,8 @@ class PomodoroContainer extends Component {
     this.reset = this.reset.bind(this);
     this.breakDecrement = this.breakDecrement.bind(this);
     this.breakIncrement = this.breakIncrement.bind(this);
+    this.sessionDecrement = this.sessionDecrement.bind(this);
+    this.sessionIncrement = this.sessionIncrement.bind(this);
   }
 
   reset() {
@@ -36,8 +38,33 @@ class PomodoroContainer extends Component {
     });
   }
 
+  sessionDecrement() {
+    if (this.state.sessionLength > 0) {
+      this.setState({
+        sessionLength: this.state.sessionLength - 1
+      });
+    }
+  }
+
+  sessionIncrement() {
+    this.setState({
+      sessionLength: this.state.sessionLength + 1
+    });
+  }
+
+
   render() {
-    return <Pomodoro state={this.state} reset={this.reset} breakIncrement={this.breakIncrement} breakDecrement={this.breakDecrement} />
+
+    const passDownProps = {
+      state: this.state,
+      reset: this.reset,
+      breakIncrement: this.breakIncrement,
+      breakDecrement: this.breakDecrement,
+      sessionIncrement: this.sessionIncrement,
+      sessionDecrement: this.sessionDecrement
+    };
+
+    return <Pomodoro obj={passDownProps} />
   }
 }
 

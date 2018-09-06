@@ -12,7 +12,7 @@ const Pomodoro = props => {
           <h2 id="break-label">Break Length</h2>
           <div>
             <div id="break-decrement"><FaArrowDown /></div>
-            <div id="break-length">5</div>
+            <div id="break-length">{props.state.breakLength}</div>
             <div id="break-increment"><FaArrowUp /></div>
           </div>
         </div>
@@ -21,7 +21,7 @@ const Pomodoro = props => {
           <h2 id="session-label">Session Length</h2>
           <div>
             <div id="session-decrement"><FaArrowDown /></div>
-            <div id="session-length">25</div>
+            <div id="session-length">{props.state.sessionLength}</div>
             <div id="session-increment"><FaArrowUp /></div>
           </div>
         </div>
@@ -30,12 +30,12 @@ const Pomodoro = props => {
 
       <div>
         <h2 id="timer-label">Session</h2>
-        <div id="time-left">mm:ss</div>
+        <div id="time-left">{props.state.timeLeft}</div>
       </div>
 
       <div>
         <div id="start_stop"><FaPlay /></div>
-        <div id="reset"><FaSync /></div>
+        <div id="reset" onClick={props.reset}><FaSync /></div>
       </div>
 
     </div>

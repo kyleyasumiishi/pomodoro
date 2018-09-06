@@ -11,9 +11,9 @@ const Pomodoro = props => {
         <div>
           <h2 id="break-label">Break Length</h2>
           <div>
-            <div id="break-decrement"><FaArrowDown /></div>
+            <div id="break-decrement" onClick={props.breakDecrement}><FaArrowDown /></div>
             <div id="break-length">{props.state.breakLength}</div>
-            <div id="break-increment"><FaArrowUp /></div>
+            <div id="break-increment" onClick={props.breakIncrement}><FaArrowUp /></div>
           </div>
         </div>
         

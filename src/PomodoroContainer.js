@@ -10,6 +10,8 @@ class PomodoroContainer extends Component {
       timeLeft: 25
     }
     this.reset = this.reset.bind(this);
+    this.breakDecrement = this.breakDecrement.bind(this);
+    this.breakIncrement = this.breakIncrement.bind(this);
   }
 
   reset() {
@@ -20,8 +22,22 @@ class PomodoroContainer extends Component {
     });
   }
 
+  breakDecrement() {
+    if (this.state.breakLength > 0) {
+      this.setState({
+        breakLength: this.state.breakLength - 1
+      });
+    }
+  }
+
+  breakIncrement() {
+    this.setState({
+      breakLength: this.state.breakLength + 1
+    });
+  }
+
   render() {
-    return <Pomodoro state={this.state} reset={this.reset} />
+    return <Pomodoro state={this.state} reset={this.reset} breakIncrement={this.breakIncrement} breakDecrement={this.breakDecrement} />
   }
 }
 

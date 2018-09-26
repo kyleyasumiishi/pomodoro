@@ -30,7 +30,7 @@ const Pomodoro = props => {
 
       <div>
         <h2 id="timer-label">Session</h2>
-        <div id="time-left">{props.obj.state.timeLeft}</div>
+        <div id="time-left">{props.obj.state.sessionDisplay}</div>
       </div>
 
       <div>

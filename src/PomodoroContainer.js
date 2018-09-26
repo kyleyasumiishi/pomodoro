@@ -7,7 +7,8 @@ class PomodoroContainer extends Component {
     this.state = {
       breakLength: 5,
       sessionLength: 25,
-      timeLeft: 90000,
+      timeLeft: 150000,
+      sessionDisplay: "25:00",
       running: false,
       started: false
     }
@@ -18,6 +19,14 @@ class PomodoroContainer extends Component {
     this.sessionIncrement = this.sessionIncrement.bind(this);
     this.timer = this.timer.bind(this);
     this.startStop = this.startStop.bind(this);
+    this.format = this.format.bind(this);
+  }
+
+  format(t) {
+    const minutes = Math.floor(t / 6000);
+    let seconds = Math.floor((t % 6000) / 100);
+    seconds = (seconds < 10) ? ("0" + seconds) : seconds;
+    return minutes.toString() + ":" + seconds.toString(); 
   }
 
   reset() {
@@ -25,7 +34,8 @@ class PomodoroContainer extends Component {
       breakLength: 5,
       sessionLength: 25,
       timeLeft: 90000,
-      started: false
+      started: false,
+      sessionDisplay: "25:00"
     });
   }
 
@@ -72,7 +82,7 @@ class PomodoroContainer extends Component {
   startStop() {
     if (!this.state.started) {
       this.setState({
-        timeLeft: this.state.sessionLength * 60 * 60,
+        timeLeft: this.state.sessionLength * 60 * 100,
         started: true
       });
     } 
@@ -86,6 +96,9 @@ class PomodoroContainer extends Component {
       });
       setInterval(this.timer, 100);
     }
+    this.setState({
+      sessionDisplay: this.format(this.state.timeLeft)
+    });
   }
 
   render() {
@@ -97,7 +110,7 @@ class PomodoroContainer extends Component {
       breakDecrement: this.breakDecrement,
       sessionIncrement: this.sessionIncrement,
       sessionDecrement: this.sessionDecrement,
-      startStop: this.startStop
+      startStop: this.startStop,
     };
 
     return <Pomodoro obj={passDownProps} />

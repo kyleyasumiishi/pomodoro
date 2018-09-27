@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import Pomodoro from "./Pomodoro";
+import * as constants from "./constants";
 
 class PomodoroContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      breakLength: 5,
-      sessionLength: 25,
-      timeLeft: 150000,
-      sessionDisplay: "25:00",
+      breakLength: constants.BREAK_LENGTH,
+      sessionLength: constants.SESSION_LENGTH,
+      msLeft: constants.MILLISECONDS_LEFT,
+      sessionDisplay: this.format(constants.MILLISECONDS_LEFT),
       running: false,
       started: false
     }
@@ -31,11 +32,11 @@ class PomodoroContainer extends Component {
 
   reset() {
     this.setState({
-      breakLength: 5,
-      sessionLength: 25,
-      timeLeft: 150000,
+      breakLength: constants.BREAK_LENGTH,
+      sessionLength: constants.SESSION_LENGTH,
+      msLeft: constants.MILLISECONDS_LEFT,
+      sessionDisplay: this.format(constants.MILLISECONDS_LEFT),
       started: false,
-      sessionDisplay: "25:00"
     });
   }
 
@@ -72,20 +73,20 @@ class PomodoroContainer extends Component {
   }
 
   timer() {
-    if (this.state.timeLeft > 0 && this.state.running) {
-        const newTimeLeft = this.state.timeLeft - 100;
+    if (this.state.msLeft > 0 && this.state.running) {
+        const newmsLeft = this.state.msLeft - 100;
         this.setState({
-          timeLeft: newTimeLeft,
-          sessionDisplay: this.format(newTimeLeft)
+          msLeft: newmsLeft,
+          sessionDisplay: this.format(newmsLeft)
         });
-        console.log(this.format(this.state.timeLeft));
+        console.log(this.format(this.state.msLeft));
       }
   }
 
   startStop() {
     if (!this.state.started) {
       this.setState({
-        timeLeft: this.state.sessionLength * 60 * 100,
+        msLeft: this.state.sessionLength * 60 * 100,
         started: true
       });
     } 
@@ -100,7 +101,7 @@ class PomodoroContainer extends Component {
       setInterval(this.timer, 1000);
     }
     this.setState({
-      sessionDisplay: this.format(this.state.timeLeft)
+      sessionDisplay: this.format(this.state.msLeft)
     });
   }
 

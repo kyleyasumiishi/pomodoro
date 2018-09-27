@@ -33,7 +33,7 @@ class PomodoroContainer extends Component {
     this.setState({
       breakLength: 5,
       sessionLength: 25,
-      timeLeft: 90000,
+      timeLeft: 150000,
       started: false,
       sessionDisplay: "25:00"
     });
@@ -73,9 +73,12 @@ class PomodoroContainer extends Component {
 
   timer() {
     if (this.state.timeLeft > 0 && this.state.running) {
+        const newTimeLeft = this.state.timeLeft - 100;
         this.setState({
-          timeLeft: this.state.timeLeft - 1
+          timeLeft: newTimeLeft,
+          sessionDisplay: this.format(newTimeLeft)
         });
+        console.log(this.format(this.state.timeLeft));
       }
   }
 
@@ -94,7 +97,7 @@ class PomodoroContainer extends Component {
       this.setState({
         running: true
       });
-      setInterval(this.timer, 100);
+      setInterval(this.timer, 1000);
     }
     this.setState({
       sessionDisplay: this.format(this.state.timeLeft)
